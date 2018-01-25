@@ -1,0 +1,14 @@
+.saved-items {
+    .saved-list {
+        margin-top: 70px;
+        .item {
+            width: 80%;
+            height: 30px;
+            border: solid thin #3949AB;
+            margin-top: 10px;
+            line-height: 30px;
+            padding-left: 20px;
+            box-sizing: border-box;
+        }
+    }
+}

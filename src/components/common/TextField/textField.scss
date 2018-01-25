@@ -1,0 +1,13 @@
+.text-field {
+    input {
+        height: 37px;
+        width: 100%;
+        border: solid thin #3949AB;
+        padding-left: 20px;
+        box-sizing: border-box;
+        font-size: 14px;
+        &:focus {
+            outline: 0;
+        }
+    }
+}

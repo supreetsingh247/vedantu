@@ -1,0 +1,19 @@
+.canvas-bottom-controls {
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        height: 50px;
+        .lower-btn {
+            width: 50%;
+            text-align: center;
+            background: #3949AB;
+            color: #ffffff;
+            height: 50px;
+            line-height: 50px;
+            border: none;
+            &:focus {
+                outline: 0;
+            }
+        }
+}
