@@ -114,8 +114,6 @@ class DrawPageContainer extends React.Component {
         if (this.state.timer != null) {
             window.clearTimeout(this.state.timer); 
             this.setState({ timer: null });
-        }
-        else {
             this.setState({ timer: window.setTimeout(self.saveCanvas, self.state.autoSaveTime) })
         }
         // setTimeout(function(){ self.saveCanvas(); }, this.state.autoSaveTime);
