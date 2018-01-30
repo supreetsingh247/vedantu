@@ -14,6 +14,7 @@ class DrawPageContainer extends React.Component {
             color: "black",
             width: 1,
             autoSaveTime: 4000,
+            timer: null,
         }
         this.mouseUp = this.mouseUp.bind(this);
         this.mouseMove = this.mouseMove.bind(this);
@@ -37,6 +38,11 @@ class DrawPageContainer extends React.Component {
         // setInterval(function() {
         //     self.saveCanvas();
         // }, 10000);
+    }
+
+    componentWillUnmount () {
+        window.clearTimeout(this.state.timer); 
+        this.setState({ timer: null });
     }
 
     saveCanvas () {
@@ -104,14 +110,13 @@ class DrawPageContainer extends React.Component {
     mouseUp () {
         var self = this;
         this.setState({ isMouseDown: false });
-        var timer = null;
 
-        if (timer != null) {
-            window.clearTimeout(timer); 
-            timer = null;
+        if (this.state.timer != null) {
+            window.clearTimeout(this.state.timer); 
+            this.setState({ timer: null });
         }
         else {
-            timer = window.setTimeout(self.saveCanvas, this.state.autoSaveTime);
+            this.setState({ timer: window.setTimeout(self.saveCanvas, self.state.autoSaveTime) })
         }
         // setTimeout(function(){ self.saveCanvas(); }, this.state.autoSaveTime);
     }
