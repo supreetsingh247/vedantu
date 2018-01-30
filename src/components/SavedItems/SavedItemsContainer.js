@@ -13,6 +13,7 @@ class SavedItemsContainer extends React.Component {
         }
         this.appendThumbnail = this.appendThumbnail.bind(this);
         this.openCanvas = this.openCanvas.bind(this);
+        this.openInNewTab = this.openInNewTab.bind(this);
     }
 
     componentDidMount () {
@@ -34,6 +35,33 @@ class SavedItemsContainer extends React.Component {
         var id = e.currentTarget.dataset.attr;
         if(id) {
             browserHistory.push('/draw-page?id=' + id);
+        }
+    }
+
+    openInNewTab (e) {
+        console.log(e.currentTarget);
+        var id = e.currentTarget.dataset.attr;
+        if(id) {
+            let currentProjectName = getLocalData('currentProject') && getLocalData('currentProject').name;
+            let projects = getLocalData('projects');
+            let currentProjectObj = null;
+            if(projects && currentProjectName) {
+                for(let i=0; i< projects.length; i++) {
+                    if(projects[i].name === currentProjectName) {
+                        currentProjectObj = projects[i].canvases;
+                    }
+                }
+            }
+            let baseImage = null;
+            for(let i=0; i< currentProjectObj.length; i++) {
+                if(currentProjectObj[i].id == id) {
+                    baseImage = currentProjectObj[i].image;
+                }
+            }
+            var image = new Image();
+            image.src = baseImage;
+            var w = window.open("");
+            w.document.write(image.outerHTML);
         }
     }
 
@@ -60,6 +88,7 @@ class SavedItemsContainer extends React.Component {
                 <BaseLayout 
                     canvases={this.state.canvases}
                     openCanvas={this.openCanvas}
+                    openInNewTab={this.openInNewTab}
                 />
             </div>
 
